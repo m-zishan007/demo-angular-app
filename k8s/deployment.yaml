@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: angular-app
+  namespace: dev # Use the namespace you created earlier
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: angular-app
+  template:
+    metadata:
+      labels:
+        app: angular-app
+    spec:
+      containers:
+      - name: angular-app
+        image: YOUR_DOCKERHUB_USERNAME/demo-angular-app:latest
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: angular-service
+  namespace: dev
+spec:
+  type: NodePort
+  selector:
+    app: angular-app
+  ports:
+    - port: 80
+      targetPort: 80
+      nodePort: 32001 # Different from your Spring Boot port
