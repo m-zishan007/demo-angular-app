@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: demo-angular-app
-        image: YOUR_DOCKERHUB_USERNAME/demo-angular-app:latest
+        image: mzishan007/demo-angular-app:latest
         ports:
         - containerPort: 80
 ---
